@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CombustibleFragment"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/grupobotones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/radioGasolina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gasolina"/>
+        <RadioButton
+            android:id="@+id/radioDiesel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diesel"/>
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/distancia_Et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Distancia"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="Precio del combustible"/>
+    <Button
+        android:id="@+id/calcular_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calcula"/>
+
+</LinearLayout>
