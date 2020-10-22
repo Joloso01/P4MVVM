@@ -3,40 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CombustibleFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".CombustibleFragment">
 
     <RadioGroup
         android:id="@+id/grupobotones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <RadioButton
             android:id="@+id/radioGasolina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gasolina"/>
+            android:checked="true"
+            android:text="Gasolina" />
+
         <RadioButton
             android:id="@+id/radioDiesel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Diesel"/>
+            android:checked="false"
+            android:text="Diesel" />
     </RadioGroup>
 
     <EditText
         android:id="@+id/distancia_Et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:hint="Distancia"/>
+        android:hint="Distancia"
+        android:inputType="number" />
+
     <EditText
+        android:id="@+id/precio_Et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:hint="Precio del combustible"/>
+        android:hint="Precio del combustible"
+        android:inputType="numberDecimal" />
+
     <Button
         android:id="@+id/calcular_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Calcula"/>
+        android:text="Calcula" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/precioTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="48sp" />
+
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/calculando"
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:gravity="center"
+        android:visibility="visible"
+        tools:visibility="visible" />
 
 </LinearLayout>

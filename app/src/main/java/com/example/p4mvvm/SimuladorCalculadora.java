@@ -16,26 +16,26 @@ public class SimuladorCalculadora {
     }
 
     interface Callback{
-        void empezarCalculo();
-        void finalizarCalculo();
+        void cuandoEmpiezeElCalculo();
+        void cuandoFinaliceElCalculo();
         void cuandoCalculadoTerminado(double precio);
     }
 
-    public double calcular(Solicitud solicitud, Callback callback){
+    public void calcular(Solicitud solicitud, Callback callback){
         double consumo = 0;
         CombustibleFragment combustibleFragment = new CombustibleFragment();
-        if (combustibleFragment.binding.radioGasolina.isChecked()){
+
+        if (combustibleFragment.botonGasolina){
             consumo=solicitud.precioCalculado*1.05;
-        }else if (combustibleFragment.binding.radioDiesel.isChecked()){
+        }else if (combustibleFragment.botonDiesel){
             consumo=solicitud.precioCalculado*0.95;
         }
 
         try {
             Thread.sleep(6000);
         } catch (InterruptedException e) {
-            return solicitud.precioCalculado;
+            callback.cuandoCalculadoTerminado(consumo);
         }
-        return consumo;
     }
 
 
