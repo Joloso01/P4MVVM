@@ -42,6 +42,7 @@ public class CombustibleFragment extends Fragment {
 
                 calculadorViewModel.calcular(distancia,precio,tipoCombustible);
             }
+
         });
 
         calculadorViewModel.precioBase.observe(getViewLifecycleOwner(), new Observer<Double>() {
@@ -61,6 +62,29 @@ public class CombustibleFragment extends Fragment {
                 } else {
                     binding.calculando.setVisibility(View.GONE);
                     binding.precioTV.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        CalculadorViewModel.errorPrecio.observe(getViewLifecycleOwner(), new Observer<Double>() {
+            @Override
+            public void onChanged(Double capitalMinimo) {
+                if (capitalMinimo != null) {
+                    binding.precioEt.setError("El precio no puede ser inferior a " + capitalMinimo + " euros");
+                } else {
+                    binding.precioEt.setError(null);
+                }
+            }
+        });
+
+
+        CalculadorViewModel.errorDistnacia.observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer plazoMinimo) {
+                if (plazoMinimo != null) {
+                    binding.distanciaEt.setError("La distancia no puede ser inferior a " + plazoMinimo + " Km");
+                } else {
+                    binding.distanciaEt.setError(null);
                 }
             }
         });

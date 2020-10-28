@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.concurrent.Executor;
@@ -15,6 +16,8 @@ public class CalculadorViewModel extends AndroidViewModel {
     SimuladorCalculadora simuladorCalculadora;
     MutableLiveData<Double> precioBase = new MutableLiveData<>();
     MutableLiveData calculando = new MutableLiveData<>();
+    static MutableLiveData<Integer> errorDistnacia = new MutableLiveData<>();
+    static MutableLiveData<Double> errorPrecio = new MutableLiveData<>();
 
     public CalculadorViewModel(@NonNull Application application){
         super(application);
@@ -33,6 +36,8 @@ public class CalculadorViewModel extends AndroidViewModel {
 
                    @Override
                    public void cuandoCalculadoTerminado(double precio) {
+                       errorDistnacia.postValue(null);
+                       errorPrecio.postValue(null);
                        precioBase.postValue(precio);
                    }
 
@@ -44,6 +49,16 @@ public class CalculadorViewModel extends AndroidViewModel {
                    @Override
                    public void cuandoFinaliceElCalculo() {
                        calculando.postValue(false);
+                   }
+
+                   @Override
+                   public void cuandoHayaErrorDeDistancia(int distanciaMinima) {
+                       errorDistnacia.postValue(distanciaMinima);
+                   }
+
+                   @Override
+                   public void cuandoHayaErrorDePrecio(double precioMinimo) {
+                        errorPrecio.postValue(precioMinimo);
                    }
                });
             }
