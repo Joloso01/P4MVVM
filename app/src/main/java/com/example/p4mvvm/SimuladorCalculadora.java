@@ -6,37 +6,32 @@ public class SimuladorCalculadora {
 
         public int distancia;
         public double precioCombustible;
+        double consumo = 0;
 
-        public Solicitud(int distancia, double precioCombustible) {
+        public Solicitud(int distancia, double precioCombustible, double tipoCombustible) {
             this.distancia = distancia;
             this.precioCombustible = precioCombustible;
+            this.consumo = tipoCombustible;
         }
 
         public double precioCalculado=((precioCombustible*distancia)/100);
     }
 
     interface Callback{
+        void cuandoCalculadoTerminado(double precio);
         void cuandoEmpiezeElCalculo();
         void cuandoFinaliceElCalculo();
-        void cuandoCalculadoTerminado(double precio);
     }
 
     public void calcular(Solicitud solicitud, Callback callback){
-        double consumo = 0;
+
+        callback.cuandoEmpiezeElCalculo();
         CombustibleFragment combustibleFragment = new CombustibleFragment();
 
-        if (combustibleFragment.botonGasolina){
-            consumo=solicitud.precioCalculado*1.05;
-        }else if (combustibleFragment.botonDiesel){
-            consumo=solicitud.precioCalculado*0.95;
-        }
-
         try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            callback.cuandoCalculadoTerminado(consumo);
-        }
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {}
+        callback.cuandoCalculadoTerminado((((solicitud.precioCombustible*solicitud.distancia)/100)*solicitud.consumo));
+        callback.cuandoFinaliceElCalculo();
     }
-
-
 }

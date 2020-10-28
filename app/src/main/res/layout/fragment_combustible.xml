@@ -41,7 +41,7 @@
         android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/calcular_button"
+        android:id="@+id/calculadora"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Calcula" />
@@ -49,23 +49,18 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <TextView
             android:id="@+id/precioTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="0"
-            android:textSize="48sp" />
-
+            android:textSize="48sp"
+            android:gravity="center"/>
+        <ProgressBar
+            android:id="@+id/calculando"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="center"/>
     </FrameLayout>
-
-    <ProgressBar
-        android:id="@+id/calculando"
-        android:layout_width="match_parent"
-        android:layout_height="119dp"
-        android:gravity="center"
-        android:visibility="visible"
-        tools:visibility="visible" />
 
 </LinearLayout>

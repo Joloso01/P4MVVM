@@ -14,8 +14,7 @@ import com.example.p4mvvm.databinding.FragmentCombustibleBinding;
 
 public class CombustibleFragment extends Fragment {
     public FragmentCombustibleBinding binding;
-    boolean botonGasolina=false;
-    boolean botonDiesel=false;
+    float tipoCombustible=0.00f;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,36 +29,34 @@ public class CombustibleFragment extends Fragment {
 
         final CalculadorViewModel calculadorViewModel=new ViewModelProvider(this).get(CalculadorViewModel.class);
 
-
-
-
-        binding.calcularButton.setOnClickListener(new View.OnClickListener() {
+        binding.calculadora.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 if (binding.radioGasolina.isChecked()){
-                    botonGasolina=true;
+                    tipoCombustible=1.05f;
                 }else if (binding.radioDiesel.isChecked()){
-                    botonDiesel=true;
+                    tipoCombustible=0.95f;
                 }
 
                 int distancia= Integer.parseInt(binding.distanciaEt.getText().toString());
                 double precio = Double.parseDouble(binding.precioEt.getText().toString());
 
-                calculadorViewModel.calcular(distancia,precio);
+                calculadorViewModel.calcular(distancia,precio,tipoCombustible);
             }
         });
 
         calculadorViewModel.precioBase.observe(getViewLifecycleOwner(), new Observer<Double>() {
             @Override
-            public void onChanged(Double aDouble) {
-                binding.precioTV.setText(String.format("%.2f",aDouble));
+            public void onChanged(Double precio) {
+                binding.precioTV.setText(String.format("%.2f",precio));
             }
         });
 
-        calculadorViewModel.calculando.observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        calculadorViewModel.calculando.observe(getViewLifecycleOwner(), new Observer() {
+
             @Override
-            public void onChanged(Boolean calculando) {
-                if (calculando) {
+            public void onChanged(Object o) {
+                if (o.equals(true)) {
                     binding.calculando.setVisibility(View.VISIBLE);
                     binding.precioTV.setVisibility(View.GONE);
                 } else {
