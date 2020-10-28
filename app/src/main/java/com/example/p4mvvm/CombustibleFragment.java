@@ -73,6 +73,7 @@ public class CombustibleFragment extends Fragment {
                     binding.precioEt.setError("El precio no puede ser inferior a " + capitalMinimo + " euros");
                 } else {
                     binding.precioEt.setError(null);
+
                 }
             }
         });
