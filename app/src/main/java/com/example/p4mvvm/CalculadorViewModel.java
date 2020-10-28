@@ -16,12 +16,10 @@ public class CalculadorViewModel extends AndroidViewModel {
     MutableLiveData<Double> precioBase = new MutableLiveData<>();
     MutableLiveData calculando = new MutableLiveData<>();
 
-
     public CalculadorViewModel(@NonNull Application application){
         super(application);
         executor = Executors.newSingleThreadExecutor();
         simuladorCalculadora = new SimuladorCalculadora();
-
     }
 
     public void calcular(int distancia, double precioCombustible, double tipoCombustible){

@@ -13,8 +13,6 @@ public class SimuladorCalculadora {
             this.precioCombustible = precioCombustible;
             this.consumo = tipoCombustible;
         }
-
-        public double precioCalculado=((precioCombustible*distancia)/100);
     }
 
     interface Callback{
@@ -26,8 +24,6 @@ public class SimuladorCalculadora {
     public void calcular(Solicitud solicitud, Callback callback){
 
         callback.cuandoEmpiezeElCalculo();
-        CombustibleFragment combustibleFragment = new CombustibleFragment();
-
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {}
